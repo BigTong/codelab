@@ -121,19 +121,25 @@ func NewFakeUser() *User {
 	t := time.Now()
 	unknown := "unkown"
 	ret := &User{
-		Id:             "000001",
-		Name:           "zhangsan",
-		Des:            "I like runing",
-		Industry:       "IT",
-		Company:        "baidu.inc",
-		Department:     "tech",
-		School:         "peking",
-		Major:          "computer",
-		Hometown:       "hunan",
-		Hangouts:       "xxx",
-		Tags:           []Tag{Tag{"aaaa", "bbbbb"}, Tag{"ccccc", "ddddd"}},
-		Accounts:       []Account{Account{"aaaa", "tcp"}, Account{"bbbb", "udp"}},
-		Answers:        []Answer{Answer{"are you ok?", "yes"}, Answer{"are you fine?", "fine"}},
+		Id:         "000001",
+		Name:       "zhangsan",
+		Des:        "I like runing",
+		Industry:   "IT",
+		Company:    "baidu.inc",
+		Department: "tech",
+		School:     "peking",
+		Major:      "computer",
+		Hometown:   "hunan",
+		Hangouts:   "xxx",
+		Tags: []Tag{
+			Tag{"aaaa", "bbbbb"},
+			Tag{"ccccc", "ddddd"}},
+		Accounts: []Account{
+			Account{"aaaa", "tcp"},
+			Account{"bbbb", "udp"}},
+		Answers: []Answer{
+			Answer{"are you ok?", "yes"},
+			Answer{"are you fine?", "fine"}},
 		Gender:         "male",
 		Looking:        "femal",
 		Intent:         "unkown",
