@@ -10,6 +10,7 @@ import (
 
 	"github.com/BigTong/common/log"
 	"github.com/golang/protobuf/proto"
+	"github.com/pquerna/ffjson/ffjson"
 )
 
 var grpcServerStarted = false
@@ -67,10 +68,25 @@ func BenchmarkJsonrpcUpdateUser(b *testing.B) {
 func BenchmarkJsonSerialAndDeSelrial(b *testing.B) {
 	b.StopTimer()
 	user := NewFakeUser()
+	userData, _ := json.Marshal(user)
+	log.FInfo("get json len:%d", len(userData))
+
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		data, _ := json.Marshal(user)
+
 		json.Unmarshal(data, user)
+	}
+
+}
+
+func BenchmarkFJsonSerialAndDeSelrial(b *testing.B) {
+	b.StopTimer()
+	user := NewFakeUser()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		data, _ := ffjson.Marshal(user)
+		ffjson.Unmarshal(data, user)
 	}
 
 }
@@ -78,6 +94,8 @@ func BenchmarkJsonSerialAndDeSelrial(b *testing.B) {
 func BenchmarkProtoSerialAndDeSelrial(b *testing.B) {
 	b.StopTimer()
 	user := NewFakeProtoUser()
+	userData, _ := proto.Marshal(user)
+	log.FInfo("get proto len:%d", len(userData))
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		data, _ := proto.Marshal(user)

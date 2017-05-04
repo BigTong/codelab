@@ -23,5 +23,4 @@ func TestJsonRpcUserUpdate(t *testing.T) {
 	if respUser.Name != USER_MOCK_NAME {
 		t.Error("not update user name")
 	}
-
 }

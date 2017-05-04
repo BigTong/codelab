@@ -3,15 +3,9 @@
 ## background
 - 
 ## benchmark result
-- go test -bench="GrpcUpdateUser" -benchtime=10s 
-- BenchmarkGrpcUpdateUser-8           100000            133371 ns/op
-
-- go test -bench="JsonrpcUpdateUser" -benchtime=10s
-- BenchmarkJsonrpcUpdateUser-8              50000            341992 ns/op
-
-- go test -bench="JsonSerialAndDeSelrial" -benchtime=10s
-- BenchmarkJsonSerialAndDeSelrial-8           200000            101162 ns/op
-
-- go test -bench="ProtoSerialAndDeSelrial" -benchtime=10s
-- BenchmarkProtoSerialAndDeSelrial-8        1000000             10166 ns/op
-
+- go test -bench="." -benchtime=10s                                                    
+- BenchmarkGrpcUpdateUser-8                100000            133138 ns/op
+- BenchmarkJsonrpcUpdateUser-8               50000            351460 ns/op
+- BenchmarkJsonSerialAndDeSelrial-8         200000             99101 ns/op
+- BenchmarkFJsonSerialAndDeSelrial-8        200000             99367 ns/op
+- BenchmarkProtoSerialAndDeSelrial-8       1000000             10393 ns/op
