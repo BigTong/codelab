@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package proto;
+
+message Tag {
+  string Value             = 1;
+  string Category          = 2;
+} 
+
+message Answer {
+  string QuestionId        = 1;
+  string Answer            = 2;
+}
+
+message Account {
+  string Value             = 1;
+  string Network           = 2;
+}
+
+message Tlation {
+  string Id                = 1;
+  string Zh                = 2;
+  string En                = 3;
+  string Ko                = 4;
+  string Ja                = 5;
+}
+
+message Region {
+  Tlation Country          = 1;
+  Tlation Province         = 2;
+  Tlation City             = 3;
+  Tlation District         = 4;
+}
+
+message Media {
+  string Id                = 1;
+  string UserId            = 2;
+  int64 CreatedTime        = 3;
+  int64 UpdatedTime        = 4;
+  int32 Index              = 5;
+  string Identifier        = 6;
+  int32 Width              = 7;
+  int32 Height             = 8;
+  uint64 DHash             = 9;
+  string VIdentifier       = 10;
+  int32 VWidth             = 11;
+  int32 VHeight            = 12;
+  double VDuration         = 13;
+  string AIdentifier       = 14;
+  double ADuration         = 15;
+  string Status            = 16;
+  string Rel               = 17;
+  bool First               = 18;
+  bool Other               = 19;
+}
+
+message Pass {
+  string Id                = 1;
+  string UserId            = 2;
+  string OtherUserId       = 3;
+  int32 Count              = 4;
+  int64 CTime              = 5;
+  int64 LTime              = 6;
+  double Longitude         = 7;
+  double Latitude          = 8;
+}
+
+message User {
+  string Id                    = 1;
+  string Name                  = 2;
+  string Des                   = 3;
+  string Industry              = 4;
+  string Company               = 5;
+  string Department            = 6;
+  string School                = 7;
+  string Major                 = 8;
+  string Hometown              = 9;
+  string Hangouts              = 10;
+  repeated Tag Tags            = 11;
+  repeated Account Accounts    = 12;
+  repeated Answer Answers      = 13;
+  string Gender                = 14;
+  string Looking               = 15;
+  string Intent                = 16;
+  double Longitude             = 17;
+  double Latitude              = 18;
+  double Distance              = 19;
+  Region Region                = 20;
+  int32 Radius                 = 21;
+  int32 MaxAge                 = 22;
+  int32 MinAge                 = 23;
+  bool Contacts                = 24;
+  bool MutualContacts          = 25;
+  string Email                 = 26;
+  int32 CountryCode            = 27;
+  string MobileNumber          = 28;
+  string Password              = 29;
+  int64 Birthdate              = 30;
+  repeated Media Pictures      = 31;
+  int64 LastActivity           = 32;
+  int64 UpdatedTime            = 33;
+  int64 CreatedTime            = 34;
+  Pass Passby                  = 35;
+  double Popularity            = 36;
+  bool PreviewMessage          = 37;
+  bool ShowMomentLikes         = 38;
+  bool WorkActive              = 39;
+  bool StudyActive             = 40;
+  repeated string ScenarioIds  = 41;
+  string Category              = 42;
+  int64 ExpiresTime            = 43;
+  string Status                = 44;
+  string Type                  = 45;
+}
+
+service UserServer {
+  rpc UserUpdate(User) returns (User) {}
+}
