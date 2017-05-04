@@ -47,35 +47,35 @@ type GrpcClient struct {
 	client proto.UserServerClient
 }
 
-func (self *GrpcClient) Close() {
-	if self.Conn != nil {
-		self.Conn.Close()
+func (gc *GrpcClient) Close() {
+	if gc.Conn != nil {
+		gc.Conn.Close()
 	}
 }
 
-func (self *GrpcClient) UpdateUser(user *proto.User) (*proto.User, error) {
+func (gc *GrpcClient) UpdateUser(user *proto.User) (*proto.User, error) {
 	var respUser *proto.User
 	var err error
 	for i := 0; i < MAX_RETRY_COUNT; i++ {
-		respUser, err = self.client.UserUpdate(context.Background(), user)
+		respUser, err = gc.client.UserUpdate(context.Background(), user)
 		if err == nil {
 			return respUser, nil
 		}
 		time.Sleep(100 * time.Millisecond)
-		self.Redial()
+		gc.Redial()
 	}
 	return respUser, err
 
 }
 
-func (self *GrpcClient) Redial() bool {
+func (gc *GrpcClient) Redial() bool {
 	option := GetDialOptions()
-	conn, err := grpc.Dial(self.ServerAddress, option...)
+	conn, err := grpc.Dial(gc.ServerAddress, option...)
 	if err != nil {
-		log.EError("dial server %s get error:%s", self.ServerAddress, err.Error())
+		log.EError("dial server %s get error:%s", gc.ServerAddress, err.Error())
 		return false
 	}
-	self.Conn = conn
-	self.client = proto.NewUserServerClient(conn)
+	gc.Conn = conn
+	gc.client = proto.NewUserServerClient(conn)
 	return true
 }

@@ -25,15 +25,15 @@ func NewJsonRpcClient(address string, timeout int) *JsonRpcClient {
 	return ret
 }
 
-func (self *JsonRpcClient) Close() {
-	if self.client != nil {
-		self.client.Close()
+func (jc *JsonRpcClient) Close() {
+	if jc.client != nil {
+		jc.client.Close()
 	}
 }
 
-func (self *JsonRpcClient) UpdateUser(user *User) (*User, error) {
+func (jc *JsonRpcClient) UpdateUser(user *User) (*User, error) {
 	respUser := &User{}
-	err := self.client.Call("JsonRpcServer.UpdateUser", user, respUser)
+	err := jc.client.Call("JsonRpcServer.UpdateUser", user, respUser)
 	if err != nil {
 		log.FError("call get error:%s", err.Error())
 		return nil, err

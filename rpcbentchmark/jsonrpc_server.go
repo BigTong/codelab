@@ -36,7 +36,7 @@ func MockJsonRpcServer() {
 	}
 }
 
-func (self *JsonRpcServer) UpdateUser(user *User, resp *User) error {
+func (js *JsonRpcServer) UpdateUser(user *User, resp *User) error {
 	// ToDo(add deepcopy)
 	*resp = *user
 	resp.Name = USER_MOCK_NAME

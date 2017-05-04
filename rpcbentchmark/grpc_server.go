@@ -34,7 +34,7 @@ func NewGrpcServer() *GrpcServer {
 
 type GrpcServer struct{}
 
-func (self *GrpcServer) UserUpdate(ctx context.Context,
+func (gs *GrpcServer) UserUpdate(ctx context.Context,
 	user *proto.User) (*proto.User, error) {
 	log.FInfo("get user:%s and set user name:%s",
 		user.Name, USER_MOCK_NAME)
